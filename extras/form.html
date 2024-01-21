@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <script>
+        function showForm(formType) {
+            // Hide all forms
+            document.getElementById('wpa').style.display = 'none';
+            document.getElementById('wpa2').style.display = 'none';
+            document.getElementById('eap').style.display = 'none';
+
+            // Show the selected form
+            document.getElementById(formType).style.display = 'block';
+        }
+        
+        function saveDetails(secinput, ssidinput, userinput, passwordinput, autoinput) {
+            localStorage.setItem("securityafter", secinput);
+            localStorage.setItem("ssidvalafter", ssidinput);
+            localStorage.setItem("usernamevalafter", userinput);
+            localStorage.setItem("passwordvalafter", passwordinput);
+            localStorage.setItem("autoafter", autoinput);
+        }
+
+    </script>
+
+    <div class ="header">
+        <br>
+        <img src="images/logo192.png" alt="logo" width="60" height="60">
+        <h1>WiFi Setup</h1>
+    </div>
+    <div class="info">
+        <p>Currently connected to: <span id="nameview"></span> <a href="details.html">View Data</a></p>
+        <script>
+            document.getElementById("nameview").innerHTML = localStorage.getItem("ssidvalbefore");
+        </script>
+    </div>
+    <div class="selection">
+        <p>Select WiFi Connection</p>
+        <button id="wpabutton" onclick="showForm('wpa')">WPA</button>
+        <button id="wpa2button" onclick="showForm('wpa2')">WPA2</button>
+        <button id="eapbutton" onclick="showForm('eap')">EAP</button>
+    </div>
+
+    <div>
+        <form id="wpa" action="confirm.html" method="post">
+            <h2>WPA ESP32 Wi-Fi Connection</h2>
+            <i class="fa fa-wifi"></i>
+            <input class="input" type="text" id="ssidwpa" name="ssid" placeholder="WiFi Name" required><br>
+            <i class="fa fa-lock"></i>
+            <input class="input" type="text" id="passwordwpa" name="password" placeholder="Password" required><br>
+            <div>
+                <label>Auto-Recognition</label>
+                <label class="switch">
+                    <input id ="reconfigwpa" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <a href="confirm.html">
+                <input class="submitbutton" type="submit" onclick="saveDetails('WPA', document.getElementById('ssidwpa').value, 'Not Applicable for WPA', document.getElementById('passwordwpa').value, document.getElementById('reconfigwpa').checked)" value="Connect to WiFi">
+            </a>
+        </form>
+
+        <form id="wpa2" action="confirm.html" method="post">
+            <h2>WPA2 ESP32 Wi-Fi Connection</h2>
+            <i class="fa fa-wifi"></i>
+            <input class="input" type="text" id="ssidwpa2" name="ssid" placeholder="WiFi Name" required><br>
+            <i class="fa fa-lock"></i>
+            <input class="input" type="text" id="passwordwpa2" name="password" placeholder="Password" required><br>
+            <div>
+                <label>Auto-Recognition</label>
+                <label class="switch">
+                    <input id ="reconfigwpa2" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <a href="confirm.html">
+                <input class="submitbutton" type="submit" onclick="saveDetails('WPA2', document.getElementById('ssidwpa2').value, 'Not Applicable for WPA2', document.getElementById('passwordwpa2').value, document.getElementById('reconfigwpa2').checked)" value="Connect to WiFi">
+            </a>
+        </form>
+
+        <form id="eap" action="confirm.html" method="post">
+            <h2>EAP ESP32 Wi-Fi Connection</h2>
+            <i class="fa fa-wifi"></i>
+            <input class="input" type="text" id="ssideap" name="ssid" placeholder="WiFi Name" required><br>
+            <i class="fa fa-user"></i>
+            <input class="input" type="text" id="usernameeap" name="username" placeholder="Username" required><br>
+            <i class="fa fa-lock"></i>
+            <input class="input" type="text" id="passwordeap" name="password" placeholder="Password" required><br>
+            <div>
+                <label>Auto-Recognition</label>
+                <label class="switch">
+                    <input id ="reconfigeap" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <a href="confirm.html">
+                <input class="submitbutton" type="submit" onclick="saveDetails('EAP', document.getElementById('ssideap').value, document.getElementById('usernameeap').value, document.getElementById('passwordeap').value, document.getElementById('reconfigeap').checked)" value="Connect to WiFi">
+            </a>
+        </form>
+
+    </div>
+
+    
+
+</body>
+</html>
