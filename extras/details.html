@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class ="header">
+        <br>
+        <img src="images/logo192.png" alt="logo" width="60" height="60">
+        <h1>WiFi Setup</h1>
+    </div>
+    <div class="info">
+        <p>Currently connected to: <span id="nameview"></span> <a href="details.html">View Data</a></p>
+        <script>
+            document.getElementById("nameview").innerHTML=localStorage.getItem("ssidvalbefore");
+        </script>
+    </div>
+
+    <div class = "details">
+        <p><b>Security: </b> <span id="sec"></span> </p>
+        <script>
+            document.getElementById("sec").innerHTML=localStorage.getItem("securitybefore");
+        </script>
+        <p><b>Network Name: </b> <span id="name"></span></p>
+        <script>
+            document.getElementById("name").innerHTML=localStorage.getItem("ssidvalbefore");
+        </script>
+        <p><b>Username: </b> <span id="user"></span></p>
+        <script>
+            document.getElementById("user").innerHTML=localStorage.getItem("usernamevalbefore");
+        </script>
+        <p><b>Password: </b> <span id="pass"></span> </p>
+        <script>
+            document.getElementById("pass").innerHTML=localStorage.getItem("passwordvalbefore");
+        </script>
+        <p><b>Auto Reconfigure: </b> <span id="recon"></span></p>
+        <script>
+            document.getElementById("recon").innerHTML=localStorage.getItem("autobefore");
+        </script>
+    </div>
+</body>
+</html>
